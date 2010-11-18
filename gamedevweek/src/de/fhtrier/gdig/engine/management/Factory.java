@@ -64,8 +64,7 @@ public class Factory {
 	}
 
 	public AnimationEntity createAnimationEntity(int order, int assetId, AssetMgr assets) {
-		AnimationEntity result = new AnimationEntity(getNewId(), assetId,
-				assets);
+		AnimationEntity result = new AnimationEntity(getNewId(), assetId, assets);
 		result.setOrder(order);
 		add(result);
 		return result;

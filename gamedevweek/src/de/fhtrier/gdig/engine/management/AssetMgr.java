@@ -159,7 +159,7 @@ public class AssetMgr {
 			duration = Integer.parseInt(tok2.nextToken());
 		} catch (Exception e) {
 			throw new IllegalArgumentException(
-					"Trying to load file in incorrect format? filename_96_96_75.png");
+					"Trying to load file in incorrect format? Expected format like: filename_96_96_75.png");
 		}
 		return storeAnimation(id, src, cellWidth, cellHeight, duration);
 	}

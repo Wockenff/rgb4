@@ -102,7 +102,7 @@ public class Level extends MoveableEntity {
 	}
 
 	MoveableEntity createBackgroundLayer(int numTiles, int AssetId,
-			String AssetPath) throws SlickException {
+			String AssetPath, int imagex, int imagey, int width, int height) throws SlickException {
 
 		// Background far
 		MoveableEntity result = new MoveableEntity(AssetId, EntityType.HELPER);
@@ -116,13 +116,13 @@ public class Level extends MoveableEntity {
 			assets.storeImage(AssetId + i, img);
 
 			ImageEntity e = factory.createImageEntity(AssetId, AssetId + i,
-					assets);
-
+					assets, imagex, imagey, width, height);
+			
 			e.setVisible(true);
 			e.getData()[Entity.SCALE_X] = Level1.ImageBackgroundScaling;
 			e.getData()[Entity.SCALE_Y] = Level1.ImageBackgroundScaling;
 			e.getData()[Entity.X] = xOffset;
-			e.getData()[Entity.Y] = Settings.SCREENHEIGHT - img.getHeight()*Level1.ImageBackgroundScaling;
+			e.getData()[Entity.Y] = Settings.SCREENHEIGHT - height*Level1.ImageBackgroundScaling;
 			xOffset += img.getWidth()*Level1.ImageBackgroundScaling;
 			result.add(e);
 		}
@@ -135,22 +135,22 @@ public class Level extends MoveableEntity {
 
 		// Background far
 		layerBackgroundFar = createBackgroundLayer(Level1.numBackgroundTiles,
-				Level1.ImageBackgroundFarId, Level1.ImageBackgroundFarPath);
-		layerBackgroundFar.setVisible(true);
+				1, Level1.ImageBackgroundPath, 0, 0,
+				Level1.ImageBackgroundWidth, Level1.ImageBackgroundHeight);
 		layerBackgroundFar.setOrder(Level1.ImageBackgroundFarRenderOrder);
 //		add(layerBackgroundFar);
 
 		// Background
 		layerBackground = createBackgroundLayer(Level1.numBackgroundTiles,
-				Level1.ImageBackgroundId, Level1.ImageBackgroundPath);
-		layerBackground.setVisible(true);
+				2, Level1.ImageBackgroundPath, 0, Level1.ImageBackgroundHeight*1,
+				Level1.ImageBackgroundWidth, Level1.ImageBackgroundHeight);
 		layerBackground.setOrder(Level1.ImageBackgroundRenderOrder);
 //		add(layerBackground);
 
 		// LayerForeground
 		layerForeground = createBackgroundLayer(Level1.numBackgroundTiles,
-				Level1.ImageForegroundId, Level1.ImageForegroundPath);
-		layerForeground.setVisible(true);
+				3, Level1.ImageBackgroundPath, 0, Level1.ImageBackgroundHeight*2,
+				Level1.ImageBackgroundWidth, Level1.ImageBackgroundHeight);
 		layerForeground.setOrder(Level1.ImageForegroundRenderOrder);
 //		add(layerForeground);
 	}
